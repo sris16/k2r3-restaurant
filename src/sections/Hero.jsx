@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import heroImage from "../assets/images/veg-hero.jpg";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 function Hero() {
   const [offsetY, setOffsetY] = useState(0);
@@ -18,7 +19,7 @@ function Hero() {
 
       {/* Parallax Background */}
       <div
-      fetchpriority="high"
+        fetchpriority="high"
         className="absolute inset-0 bg-cover bg-center will-change-transform"
         style={{
           backgroundImage: `url(${heroImage})`,
@@ -42,10 +43,13 @@ function Hero() {
         </p>
 
         <a
-          href="#menu"
-          className="inline-block px-6 sm:px-10 py-3 sm:py-4 border-2 border-gold text-gold font-semibold tracking-wide rounded-md transition duration-500 hover:bg-gold hover:text-black hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:-translate-y-1"
+          href="https://www.google.com/maps/dir/?api=1&destination=V2WQ+2MX,+Thanakkankulam,+Tamil+Nadu"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center gap-3 px-8 py-4 border-2 border-gold text-gold font-semibold tracking-wide rounded-md transition duration-500 hover:bg-gold hover:text-black hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:-translate-y-1"
         >
-          Explore Menu
+          <FaMapMarkerAlt className="text-lg" />
+          Get Directions
         </a>
       </div>
 

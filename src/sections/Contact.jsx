@@ -1,10 +1,12 @@
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-
+import useFadeIn from "../hooks/useFadeIn";
 function Contact() {
+    const [ref, isVisible] = useFadeIn();
   return (
     <section
+      ref={ref}
       id="contact"
-      className="py-32 px-6 bg-black text-gray-300"
+      className={`fade-section ${isVisible ? "visible" : ""} py-32 px-6 bg-black text-gray-300`}
     >
       <div className="max-w-7xl mx-auto">
 
@@ -64,8 +66,7 @@ function Contact() {
               {/* Call Icon */}
               <a
                 href="tel:8122421182"
-                className="w-12 h-12 flex items-center justify-center border-2 border-gold rounded-full text-gold hover:bg-gold hover:text-black transition duration-500"
-              >
+                className="w-12 h-12 flex items-center justify-center border-2 border-gold rounded-full text-gold transition duration-500 hover:bg-gold hover:text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-1"              >
                 <FaPhoneAlt size={18} />
               </a>
 
@@ -74,7 +75,7 @@ function Contact() {
                 href="https://wa.me/918122421182"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center border-2 border-gold rounded-full text-gold hover:bg-gold hover:text-black transition duration-500"
+                className="w-12 h-12 flex items-center justify-center border-2 border-gold rounded-full text-gold transition duration-500 hover:bg-gold hover:text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-1"
               >
                 <FaWhatsapp size={22} />
               </a>
@@ -84,7 +85,7 @@ function Contact() {
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=k2r3foods@gmail.com&su=Reservation%20Inquiry"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 flex items-center justify-center border-2 border-gold rounded-full text-gold hover:bg-gold hover:text-black transition duration-500"
+                className="w-12 h-12 flex items-center justify-center border-2 border-gold rounded-full text-gold transition duration-500 hover:bg-gold hover:text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-1"
               >
                 <FaEnvelope size={18} />
               </a>

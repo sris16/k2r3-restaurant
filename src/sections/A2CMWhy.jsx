@@ -1,9 +1,11 @@
+import useFadeIn from "../hooks/useFadeIn";
 import recipes from "../assets/images/authentic-recipes.jpg";
 import heritage from "../assets/images/cultural-heritage.jpg";
 import cooking from "../assets/images/traditional-cooking.jpg";
 import flavors from "../assets/images/rich-flavors.jpg";
 
 function A2CMWhy() {
+    const [ref, isVisible] = useFadeIn();
   const features = [
     {
       image: recipes,
@@ -32,7 +34,10 @@ function A2CMWhy() {
   ];
 
   return (
-    <section className="py-28 px-6 bg-[#0f0a06] text-gray-300">
+    <section
+      ref={ref}
+      className={`fade-section ${isVisible ? "visible" : ""} py-28 px-6 bg-[#0f0a06] text-gray-300`}
+    >
       <div className="max-w-7xl mx-auto text-center">
 
         {/* Section Heading */}
@@ -45,14 +50,14 @@ function A2CMWhy() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-[#1a120c] border border-[#3b2a1a] rounded-xl overflow-hidden hover:-translate-y-3 hover:border-gold transition duration-500 shadow-2xl"
+              className="bg-[#1a120c] border border-[#3b2a1a] rounded-xl overflow-hidden transition duration-500 transform hover:-translate-y-3 hover:border-gold hover:shadow-[0_0_30px_rgba(212,175,55,0.25)]"
             >
               {/* Image */}
               <div className="overflow-hidden">
                 <img
                   src={feature.image}
                   alt={feature.title}
-                  className="h-52 w-full object-cover hover:scale-110 transition duration-700"
+                  className="h-52 w-full object-cover transform transition duration-700 ease-out hover:scale-105 hover:brightness-110"
                 />
               </div>
 

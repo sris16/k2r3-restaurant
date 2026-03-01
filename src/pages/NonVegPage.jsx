@@ -1,21 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import Navbar from "../components/Navbar";
 import LoadingScreen from "../components/LoadingScreen";
 import Footer from "../components/Footer";
-import Contact from "../sections/Contact";
-import A2CMDishes from "../sections/A2CMDishes";
-import A2CMWhy from "../sections/A2CMWhy";
 import heroImage from "../assets/images/a2cm-hero.jpg";
+
+/* Lazy Loaded Sections */
+const A2CMDishes = lazy(() => import("../sections/A2CMDishes"));
+const A2CMWhy = lazy(() => import("../sections/A2CMWhy"));
+const Contact = lazy(() => import("../sections/Contact"));
 
 function NonVegPage() {
   const [loading, setLoading] = useState(true);
+  const [offsetY, setOffsetY] = useState(0);
 
+  /* Loading Screen */
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1200);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  /* Optimized Parallax */
+  useEffect(() => {
+    const handleScroll = () => {
+      requestAnimationFrame(() => {
+        setOffsetY(window.scrollY * 0.15);
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (loading) return <LoadingScreen text="A²CM" />;
@@ -27,11 +43,12 @@ function NonVegPage() {
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
 
-        {/* Background Image */}
+        {/* Parallax Background */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center will-change-transform"
           style={{
             backgroundImage: `url(${heroImage})`,
+            transform: `translateY(${offsetY}px)`,
           }}
         ></div>
 
@@ -56,7 +73,7 @@ function NonVegPage() {
 
           <a
             href="#a2cm-menu"
-            className="inline-block px-10 py-4 border-2 border-gold text-gold font-semibold tracking-wide hover:bg-gold hover:text-black transition duration-500 rounded-md"
+            className="inline-block px-10 py-4 border-2 border-gold text-gold font-semibold tracking-wide rounded-md transition duration-500 hover:bg-gold hover:text-black hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:-translate-y-1"
           >
             Explore Chettinad Menu
           </a>
@@ -64,9 +81,13 @@ function NonVegPage() {
         </div>
       </section>
 
-      <A2CMDishes />
-      <A2CMWhy />
-      <Contact />
+      {/* Lazy Loaded Sections */}
+      <Suspense fallback={null}>
+        <A2CMDishes />
+        <A2CMWhy />
+        <Contact />
+      </Suspense>
+
       <Footer />
     </>
   );

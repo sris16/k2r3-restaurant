@@ -52,18 +52,18 @@ function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8 font-body text-sm tracking-wide text-white">
 
-          <Link to="/" className="hover:text-gold transition">
+          <Link to="/" className="relative hover:text-gold transition duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full">
             K2 Pure Veg
           </Link>
 
           <button
             onClick={() => handleScrollNavigation("r3", "/")}
-            className="hover:text-gold transition"
+            className="relative hover:text-gold transition duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full"
           >
             R3 Café
           </button>
 
-          <Link to="/a2cm" className="hover:text-gold transition">
+          <Link to="/a2cm" className="relative hover:text-gold transition duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full">
             A²CM
           </Link>
 
@@ -74,7 +74,7 @@ function Navbar() {
                 isA2CM ? "/a2cm" : "/"
               )
             }
-            className="hover:text-gold transition"
+            className="relative hover:text-gold transition duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full"
           >
             Contact
           </button>

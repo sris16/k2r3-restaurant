@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import Navbar from "../components/Navbar";
 import LoadingScreen from "../components/LoadingScreen";
 import Hero from "../sections/Hero";
-import About from "../sections/About";
-import Menu from "../sections/Menu";
-import WhyUs from "../sections/WhyUs";
-import R3Section from "../sections/R3Section";
-import Contact from "../sections/Contact";
 import Footer from "../components/Footer";
+
+/* Lazy Loaded Sections */
+const About = lazy(() => import("../sections/About"));
+const Menu = lazy(() => import("../sections/Menu"));
+const WhyUs = lazy(() => import("../sections/WhyUs"));
+const R3Section = lazy(() => import("../sections/R3Section"));
+const Contact = lazy(() => import("../sections/Contact"));
 
 function VegPage() {
   const [loading, setLoading] = useState(true);
@@ -26,17 +28,17 @@ function VegPage() {
     <>
       <Navbar />
 
-      <Hero
-        title="K2 Pure Veg Restaurant"
-        subtitle="Experience authentic vegetarian cuisine crafted with fresh ingredients and traditional flavors."
-        buttonText="Explore Menu"
-      />
+      <Hero />
 
-      <About />
-      <Menu />
-      <WhyUs />
-      <R3Section />
-      <Contact />
+      {/* Lazy Loaded Sections */}
+      <Suspense fallback={null}>
+        <About />
+        <Menu />
+        <WhyUs />
+        <R3Section />
+        <Contact />
+      </Suspense>
+
       <Footer />
     </>
   );

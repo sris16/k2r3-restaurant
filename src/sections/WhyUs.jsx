@@ -1,9 +1,12 @@
+import useFadeIn from "../hooks/useFadeIn";
 import fresh from "../assets/images/fresh-ingredients.jpg";
 import hygienic from "../assets/images/hygienic-kitchen.jpg";
 import chef from "../assets/images/experienced-chef.jpg";
 import customer from "../assets/images/customer-satisfaction.jpg";
 
 function WhyUs() {
+  const [ref, isVisible] = useFadeIn();
+
   const features = [
     {
       image: fresh,
@@ -32,32 +35,33 @@ function WhyUs() {
   ];
 
   return (
-    <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-luxuryBlack text-gray-300">
+    <section
+      ref={ref}
+      className={`fade-section ${isVisible ? "visible" : ""} py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-luxuryBlack text-gray-300`}
+    >
       <div className="max-w-7xl mx-auto text-center">
 
-        {/* Section Heading */}
         <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-gold mb-12 sm:mb-16">
           Why Choose Us
         </h2>
 
-        {/* Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
 
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-black border border-gold/10 rounded-xl overflow-hidden hover:-translate-y-2 hover:border-gold transition duration-500 shadow-lg"
+              className="bg-black border border-gold/10 rounded-xl overflow-hidden transition duration-500 transform hover:-translate-y-2 hover:border-gold hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]"
             >
-              {/* Image */}
               <div className="overflow-hidden">
                 <img
                   src={feature.image}
                   alt={feature.title}
-                  className="w-full h-48 sm:h-52 object-cover hover:scale-110 transition duration-700"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-48 sm:h-52 object-cover transform transition duration-700 ease-out hover:scale-105 hover:brightness-110"
                 />
               </div>
 
-              {/* Content */}
               <div className="p-5 sm:p-6">
                 <h3 className="font-heading text-lg sm:text-xl text-white mb-3 sm:mb-4">
                   {feature.title}

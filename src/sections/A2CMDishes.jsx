@@ -1,9 +1,11 @@
+import useFadeIn from "../hooks/useFadeIn";
 import chicken from "../assets/images/chettinad-chicken.jpg";
 import mutton from "../assets/images/mutton-curry.jpg";
 import fish from "../assets/images/fish-fry.jpg";
 import meals from "../assets/images/traditional-meals.jpg";
 
 function A2CMDishes() {
+    const [ref, isVisible] = useFadeIn();
   const dishes = [
     {
       image: chicken,
@@ -25,7 +27,7 @@ function A2CMDishes() {
     },
     {
       image: meals,
-      title: "Traditional Meals",
+      title: "Chettinad Style",
       description:
         "A complete Chettinad feast served with rice, curries, and traditional accompaniments.",
     },
@@ -33,8 +35,9 @@ function A2CMDishes() {
 
   return (
     <section
+      ref={ref}
       id="a2cm-menu"
-      className="py-28 px-6 bg-[#140f0a] text-gray-300"
+      className={`fade-section ${isVisible ? "visible" : ""} py-28 px-6 bg-[#140f0a] text-gray-300`}
     >
       <div className="max-w-7xl mx-auto">
 
@@ -54,14 +57,16 @@ function A2CMDishes() {
           {dishes.map((dish, index) => (
             <div
               key={index}
-              className="bg-black rounded-xl overflow-hidden border border-gold/10 hover:-translate-y-3 hover:border-gold transition duration-500 shadow-xl"
+              className="bg-black rounded-xl overflow-hidden border border-gold/10 transition duration-500 transform hover:-translate-y-3 hover:border-gold hover:shadow-[0_0_30px_rgba(212,175,55,0.25)]"
             >
               {/* Image */}
               <div className="overflow-hidden">
                 <img
                   src={dish.image}
                   alt={dish.title}
-                  className="h-56 w-full object-cover hover:scale-110 transition duration-700"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-56 w-full object-cover transform transition duration-700 ease-out hover:scale-105 hover:brightness-110"
                 />
               </div>
 

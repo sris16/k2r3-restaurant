@@ -1,14 +1,29 @@
-import heroImage from "../assets/images/veg-hero.jpg"; 
+import { useEffect, useState } from "react";
+import heroImage from "../assets/images/veg-hero.jpg";
 
 function Hero() {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center text-center bg-luxuryBlack overflow-hidden">
+  const [offsetY, setOffsetY] = useState(0);
 
-      {/* Background Image */}
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffsetY(window.scrollY * 0.2); // subtle movement
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+
+      {/* Parallax Background */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+      fetchpriority="high"
+        className="absolute inset-0 bg-cover bg-center will-change-transform"
         style={{
           backgroundImage: `url(${heroImage})`,
+          transform: `translateY(${offsetY}px)`,
+          willChange: "transform",
         }}
       ></div>
 
@@ -28,7 +43,7 @@ function Hero() {
 
         <a
           href="#menu"
-          className="inline-block px-6 sm:px-10 py-3 sm:py-4 border-2 border-gold text-gold font-semibold tracking-wide rounded-md hover:bg-gold hover:text-black transition duration-500"
+          className="inline-block px-6 sm:px-10 py-3 sm:py-4 border-2 border-gold text-gold font-semibold tracking-wide rounded-md transition duration-500 hover:bg-gold hover:text-black hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:-translate-y-1"
         >
           Explore Menu
         </a>

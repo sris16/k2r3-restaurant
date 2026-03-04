@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Navbar() {
@@ -8,8 +8,11 @@ function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const navRef = useRef(null);
+
   const isA2CM = location.pathname === "/a2cm";
 
+  /* Detect scroll for navbar background */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -19,6 +22,33 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* Close mobile menu when user scrolls */
+  useEffect(() => {
+    const handleScrollClose = () => {
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollClose);
+
+    return () => window.removeEventListener("scroll", handleScrollClose);
+  }, [menuOpen]);
+
+  /* Close mobile menu when clicking outside */
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  /* Scroll navigation handler */
   const handleScrollNavigation = (sectionId, targetPath) => {
     if (location.pathname === targetPath) {
       const element = document.getElementById(sectionId);
@@ -28,11 +58,13 @@ function Navbar() {
     } else {
       navigate(`${targetPath}#${sectionId}`);
     }
+
     setMenuOpen(false);
   };
 
   return (
     <nav
+      ref={navRef}
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled
           ? "bg-black/85 backdrop-blur-md border-b border-gold/10"
@@ -52,18 +84,18 @@ function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8 font-body text-sm tracking-wide text-white">
 
-          <Link to="/" className="relative hover:text-gold transition duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full">
+          <Link to="/" className="hover:text-gold transition">
             K2 Pure Veg
           </Link>
 
           <button
             onClick={() => handleScrollNavigation("r3", "/")}
-            className="relative hover:text-gold transition duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full"
+            className="hover:text-gold transition"
           >
             R3 Café
           </button>
 
-          <Link to="/a2cm" className="relative hover:text-gold transition duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full">
+          <Link to="/a2cm" className="hover:text-gold transition">
             A²CM
           </Link>
 
@@ -74,13 +106,13 @@ function Navbar() {
                 isA2CM ? "/a2cm" : "/"
               )
             }
-            className="relative hover:text-gold transition duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full"
+            className="hover:text-gold transition"
           >
             Contact
           </button>
         </div>
 
-        {/* Animated Hamburger */}
+        {/* Hamburger Button */}
         <button
           className="md:hidden flex flex-col justify-center items-center space-y-1"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -103,13 +135,13 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Smooth Animated Mobile Menu */}
+      {/* Mobile Menu */}
       <div
         className={`
-          md:hidden 
-          bg-black 
-          border-t border-gold/10 
-          px-4 
+          md:hidden
+          bg-black
+          border-t border-gold/10
+          px-4
           overflow-hidden
           transition-all duration-500 ease-in-out
           ${menuOpen ? "max-h-96 py-6 opacity-100" : "max-h-0 py-0 opacity-0"}

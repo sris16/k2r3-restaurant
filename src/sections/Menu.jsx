@@ -33,9 +33,7 @@ function Menu() {
   return (
     <section
       ref={ref}
-      className={`fade-section ${
-        isVisible ? "visible" : ""
-      } py-24 px-6 bg-black`}
+      className={`fade-section ${isVisible ? "visible" : ""} py-24 px-6 bg-black`}
     >
       <div className="max-w-7xl mx-auto">
 
@@ -56,22 +54,27 @@ function Menu() {
           {categories.map((category, index) => (
             <div
               key={index}
-              className="bg-luxuryBlack border border-gold/10 rounded-xl p-6 sm:p-8 transition duration-500 transform hover:-translate-y-2 hover:border-gold hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]"
+              className="group bg-luxuryBlack border border-gold/10 rounded-xl p-6 sm:p-8 transition-all duration-500 hover:-translate-y-3 hover:border-gold hover:shadow-[0_10px_35px_rgba(212,175,55,0.25)]"
             >
               <h3 className="font-heading text-xl sm:text-2xl text-gold mb-6">
                 {category.title}
               </h3>
 
               <ul className="space-y-3 font-body text-sm sm:text-base text-gray-400">
+
                 {category.items.map((item, i) => (
                   <li
                     key={i}
-                    className="flex justify-between border-b border-gray-800 pb-2 transition duration-300 hover:text-white hover:translate-x-1"
+                    className="flex justify-between border-b border-gray-800 pb-2 transition duration-300 group-hover:text-gray-200 hover:text-white"
                   >
                     {item}
-                    <span className="text-gold">•</span>
+
+                    <span className="text-gold transition-transform duration-300 group-hover:scale-110">
+                      •
+                    </span>
                   </li>
                 ))}
+
               </ul>
 
             </div>

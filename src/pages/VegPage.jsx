@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import LoadingScreen from "../components/LoadingScreen";
 import Hero from "../sections/Hero";
 import Footer from "../components/Footer";
+import SectionDivider from "../components/SectionDivider";
 
 /* Lazy Loaded Sections */
 const About = lazy(() => import("../sections/About"));
@@ -26,16 +27,24 @@ function VegPage() {
 
   return (
     <>
+
+
       <Navbar />
 
       <Hero />
+    
+      <SectionDivider />
 
       {/* Lazy Loaded Sections */}
       <Suspense fallback={null}>
         <About />
+        <SectionDivider />
         <Menu />
+        <SectionDivider />
         <WhyUs />
+        <SectionDivider />
         <R3Section />
+        <SectionDivider />
         <Contact />
       </Suspense>
 

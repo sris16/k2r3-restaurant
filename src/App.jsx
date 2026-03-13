@@ -1,5 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import ScrollProgress from "./components/ScrollProgress";
+import BackToTop from "./components/BackToTop";
+import MobileActions from "./components/MobileActions";
 import VegPage from "./pages/VegPage";
 import NonVegPage from "./pages/NonVegPage";
 
@@ -23,6 +26,9 @@ function ScrollToHash() {
 function App() {
   return (
     <>
+      <MobileActions />
+      <BackToTop />
+      <ScrollProgress />
       <ScrollToHash />
       <Routes>
         <Route path="/" element={<VegPage />} />

@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import LoadingScreen from "../components/LoadingScreen";
 import Hero from "../sections/Hero";
 import Footer from "../components/Footer";
+import Reviews from "../sections/Reviews";
 import SectionDivider from "../components/SectionDivider";
 
 /* Lazy Loaded Sections */
@@ -44,6 +45,8 @@ function VegPage() {
         <WhyUs />
         <SectionDivider />
         <R3Section />
+        <SectionDivider />
+        <Reviews />
         <SectionDivider />
         <Contact />
       </Suspense>

@@ -15,13 +15,13 @@ function R3Section() {
 
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[6000ms] ease-out group-hover:scale-110"
+        className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[6000ms] ease-out will-change-transform"
         style={{
           backgroundImage: `url(${r3Background})`,
         }}
       ></div>
 
-      {/* Cinematic Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/55"></div>
 
       {/* Content */}
@@ -39,7 +39,7 @@ function R3Section() {
           a warm café experience.
         </p>
 
-        {/* Premium Quote */}
+        {/* Quote */}
         <div className="mt-6">
           <p className="font-heading text-lg sm:text-xl md:text-2xl text-gold italic tracking-wide transition duration-500 hover:scale-105 hover:drop-shadow-[0_0_18px_rgba(212,175,55,0.5)]">
             “Step in for coffee. Stay for the experience.”

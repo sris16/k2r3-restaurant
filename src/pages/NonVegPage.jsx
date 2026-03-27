@@ -11,13 +11,11 @@ const Contact = lazy(() => import("../sections/Contact"));
 function NonVegPage() {
   const [loading, setLoading] = useState(true);
   const [offsetY, setOffsetY] = useState(0);
-  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-      setShow(true);
-    }, 1200);
+    }, 1100); 
 
     return () => clearTimeout(timer);
   }, []);
@@ -42,7 +40,7 @@ function NonVegPage() {
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
 
-        {/* Parallax Background */}
+        {/* Background */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -57,40 +55,22 @@ function NonVegPage() {
         {/* Content */}
         <div className="relative z-10 px-6 max-w-4xl text-gray-200">
 
-          {/* Title */}
-          <h1
-            className={`font-heading text-4xl md:text-6xl lg:text-7xl text-gold mb-6 leading-tight transition-all duration-1000 ${
-              show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
+          <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl text-gold mb-6 leading-tight animate-fadeUp">
             Karaikudi Angammal Aachi
           </h1>
 
-          {/* Subtitle */}
-          <h2
-            className={`font-heading text-2xl md:text-3xl mb-8 tracking-wider text-gold transition-all duration-1000 delay-200 ${
-              show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
+          <h2 className="font-heading text-2xl md:text-3xl mb-8 tracking-wider text-gold animate-fadeUp delay-200">
             Chettinad Mess
           </h2>
 
-          {/* Description */}
-          <p
-            className={`font-body text-lg md:text-xl mb-10 text-gray-200 transition-all duration-1000 delay-300 ${
-              show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
+          <p className="font-body text-lg md:text-xl mb-10 text-gray-200 animate-fadeUp delay-300">
             A bold celebration of authentic Chettinad flavors,
             slow-cooked with traditional spices and heritage recipes.
           </p>
 
-          {/* Button */}
           <a
             href="#a2cm-menu"
-            className={`inline-block px-10 py-4 border-2 border-gold text-gold font-semibold tracking-wide rounded-md transition-all duration-1000 delay-500 hover:bg-gold hover:text-black hover:-translate-y-1 ${
-              show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className="inline-block px-10 py-4 border-2 border-gold text-gold font-semibold tracking-wide rounded-md transition hover:bg-gold hover:text-black hover:-translate-y-1 animate-fadeUp delay-500"
           >
             Explore Chettinad Menu
           </a>
@@ -100,9 +80,7 @@ function NonVegPage() {
 
       <Suspense fallback={null}>
         <A2CMDishes />
-        
         <A2CMWhy />
-        
         <Contact />
       </Suspense>
 

@@ -7,24 +7,19 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/logo.png" />
 
-  <!-- 🚀 Preconnect (VERY IMPORTANT for font speed) -->
+  <!-- 🚀 Preconnect for fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- 🚀 Optimized Google Fonts (merged + display=swap) -->
+  <!-- 🚀 Optimized Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Preload Hero Images -->
-  <link rel="preload" as="image" href="/images/veg-hero.jpg" />
-  <link rel="preload" as="image" href="/images/a2cm-hero.jpg" />
 
   <!-- Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO Title -->
+  <!-- SEO -->
   <title>K2R3 Restaurant | Pure Veg • R3 Café • A²CM Chettinad Mess</title>
 
-  <!-- SEO Meta -->
   <meta name="description"
     content="K2R3 Restaurant offers premium vegetarian cuisine, R3 Café beverages, and authentic Chettinad dishes in Thanakkankulam, Tamil Nadu." />
 
@@ -43,6 +38,28 @@
   <!-- Location SEO -->
   <meta name="geo.region" content="IN-TN" />
   <meta name="geo.placename" content="Thanakkankulam, Tamil Nadu" />
+
+  <!-- 🎨 Animation CSS -->
+  <style>
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fadeUp {
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-500 { animation-delay: 0.5s; }
+  </style>
 
 </head>
 

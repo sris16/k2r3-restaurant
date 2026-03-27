@@ -61,6 +61,8 @@ function WhyUs() {
                 <img
                   src={feature.image}
                   alt={feature.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-48 sm:h-52 object-cover transition duration-700 group-hover:scale-110 group-hover:brightness-110"
                 />
               </div>

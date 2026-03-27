@@ -6,10 +6,13 @@ function Hero() {
     <section className="relative min-h-screen flex items-center justify-center text-center bg-luxuryBlack overflow-hidden">
 
       {/* Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      ></div>
+      <img
+        src={heroImage}
+        alt="K2 Pure Veg Restaurant"
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+      />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/75"></div>

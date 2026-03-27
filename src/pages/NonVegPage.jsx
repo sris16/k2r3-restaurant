@@ -15,7 +15,7 @@ function NonVegPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1100); 
+    }, 1100);
 
     return () => clearTimeout(timer);
   }, []);
@@ -41,13 +41,16 @@ function NonVegPage() {
       <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
 
         {/* Background */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
+        <img
+          src={heroImage}
+          alt="A2CM Chettinad"
+          className="absolute inset-0 w-full h-full object-cover"
           style={{
-            backgroundImage: `url(${heroImage})`,
             transform: `translateY(${offsetY}px)`
           }}
-        ></div>
+          loading="eager"
+          fetchpriority="high"
+        />
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20"></div>
